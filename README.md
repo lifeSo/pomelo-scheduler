@@ -2,14 +2,14 @@
 pomelo-schedule is a schedule tool for nodejs, it's purpose is to provide a product level schedule module which is high efficient and can support large number job schedule.You can 
 
 As a schedule tool, it support two kinds of trigger: A simple trigger which use a js object and  a Cron time trigger which use a Cron time string.
-##Installation
+## Installation
 ```
 npm install pomelo-schedule
 ```
-##Schedule simple Job
+## Schedule simple Job
 Simple job will receive a object as a trigger, which take three attributes, a JS function as object, and an object as the parameters in the job.
 
-###Simple trigge example
+### Simple trigge example
 ``` javascript
 //Fire 10000ms after now, and run 10 times with a 1000ms interval.
 var trigger1 = {
@@ -44,7 +44,7 @@ var trigger6 = {
 }
 ``` 
 
-###Simple job example
+### Simple job example
 ``` javascript
 var schedule = require('../lib/schedule');
 
@@ -54,10 +54,10 @@ var simpleJob = function(data){
 
 schedule.scheduleJob({start:Date.now(), period:3000, count: 10}, simpleJob, {name: 'simpleJobExample'});
 ```
-##Schedule cron Job
+## Schedule cron Job
 Cron job is the job that use cron trigger, it is just like the simple job, only use the cron trigger instead of simple trigger.
 
-###Cron job example
+### Cron job example
 ``` javascript
 var schedule = require('../lib/schedule');
 
@@ -67,7 +67,7 @@ var cronJob = function(data){
 
 schedule.scheduleJob("0 0/15 8 * * *", cronJob, {name:'cronJobExample'});
 ```
-###Cron Trigger syntax
+### Cron Trigger syntax
 Cron trigger has 7 fiels, the format is very like the cronTab in linux, only add a second field in the head. The fields and the boundary is as follow:
 <pre style="bgcolor='#dbdbdb'">
 *     *     *     *   *    *        command to be executed
@@ -80,13 +80,13 @@ Cron trigger has 7 fiels, the format is very like the cronTab in linux, only add
 |     +------------- min (0 - 59)
 +------------- second (0 - 59)
 </pre>
-###Exampe of cron tirggers
+### Exampe of cron tirggers
 
 "0/2 0 8 * * 6"    Fire at every Satuaday at every even seconds of 08:00
 "0 30 10 1 4 *"      Fire at 10:30 on 1st of March  
 "15 15 15 10 10 *"   Fire at Octorber 10th, at 15:15:15.
 
-###Special characters
+### Special characters
 Pomelo-schedule allow three kinds of spechial characters, they are '-', '/' and '.'.
 
 -: '-' means range. For example, 1-3 in the second field means the seconds 1, 2 and 3
@@ -95,7 +95,7 @@ Pomelo-schedule allow three kinds of spechial characters, they are '-', '/' and 
 
 ,: means additional values. For example, 1, 10, 15 in the second field means 1, 10 and 15 second. You can use '-', and '/' with ',', for example, 11,20-22,0/2 in the second filed means 11, 21 and all the even seconds. 
 
-##Cancel Job 
+## Cancel Job 
 ``` javascript
 var schedule = require('../lib/schedule');
 
